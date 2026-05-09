@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PUBG X1es | Ultimate Item Database</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ================= BOOTSTRAP ================= -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- ================= ICON ================= -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- ================= FONT ================= -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   GLOBAL
+===================================================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
+}
+body{
+    background:#050816;
+    color:white;
+    scroll-behavior:smooth;
+    transition:.4s;
+}
+img{max-width:100%}
+
+/* =====================================================
+   THEMES
+===================================================== */
+body.neon{
+    background:#000;
+    color:#00fff7;
+}
+body.fire{
+    background:#1a0000;
+    color:#ffae00;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+.navbar{
+    background:rgba(0,0,0,.9);
+}
+.navbar-brand{
+    font-size:28px;
+    font-weight:800;
+    color:#ffc107!important;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero{
+    height:100vh;
+    background:
+      linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),
+      url("https://images.unsplash.com/photo-1549921296-3cceabf6c6c5");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+.hero h1{
+    font-size:70px;
+    color:#ffc107;
+    text-shadow:0 0 30px orange;
+}
+.hero p{
+    font-size:22px;
+    margin-bottom:20px;
+}
+.hero button{
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.1)}
+    100%{transform:scale(1)}
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+section{
+    padding:90px 0;
+}
+.section-title{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:50px;
+    color:#ffc107;
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+.card{
+    background:#0b1229;
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.4s;
+    height:100%;
+}
+.card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 0 40px rgba(255,193,7,.6);
+}
+.card img{
+    height:220px;
+    object-fit:cover;
+}
+.card-body{
+    text-align:center;
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+.search-box{
+    max-width:400px;
+    margin:0 auto 40px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer{
+    background:black;
+    padding:40px 0;
+    text-align:center;
+}
+footer i{
+    font-size:24px;
+    margin:10px;
+    color:#ffc107;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media(max-width:768px){
+    .hero h1{font-size:42px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+   NAVBAR
+===================================================== -->
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container">
+<a class="navbar-brand">PUBG X1es</a>
+<button class="navbar-toggler bg-warning" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link text-white" href="#guns">Guns</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="#dress">Dress</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="#xsuit">X-Suit</a></li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">Theme</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" onclick="setTheme('dark')">Dark</a></li>
+<li><a class="dropdown-item" onclick="setTheme('neon')">Neon</a></li>
+<li><a class="dropdown-item" onclick="setTheme('fire')">Fire</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- =====================================================
+   HERO
+===================================================== -->
+<div class="hero">
+<div>
+<h1>1 BILLION PUBG ITEMS</h1>
+<p>Complete Gun • Outfit • X-Suit Database</p>
+<button class="btn btn-warning btn-lg">Explore Items</button>
+</div>
+</div>
+
+<!-- =====================================================
+   GUNS
+===================================================== -->
+<section id="guns">
+<h2 class="section-title">🔫 PUBG GUN SKINS</h2>
+
+<div class="search-box">
+<input class="form-control" placeholder="Search Gun..." onkeyup="searchItem(this.value,'gunList')">
+</div>
+
+<div class="container">
+<div class="row" id="gunList"></div>
+</div>
+</section>
+
+<!-- =====================================================
+   DRESS
+===================================================== -->
+<section id="dress">
+<h2 class="section-title">👕 OUTFITS & SETS</h2>
+
+<div class="search-box">
+<input class="form-control" placeholder="Search Dress..." onkeyup="searchItem(this.value,'dressList')">
+</div>
+
+<div class="container">
+<div class="row" id="dressList"></div>
+</div>
+</section>
+
+<!-- =====================================================
+   X-SUIT
+===================================================== -->
+<section id="xsuit">
+<h2 class="section-title">💎 X-SUIT COLLECTION</h2>
+<div class="container">
+<div class="row" id="xsuitList"></div>
+</div>
+</section>
+
+<!-- =====================================================
+   FOOTER
+===================================================== -->
+<footer>
+<p>© 2026 PUBG X1es | Fan Made Database</p>
+<i class="fab fa-facebook"></i>
+<i class="fab fa-youtube"></i>
+<i class="fab fa-discord"></i>
+</footer>
+
+<!-- =====================================================
+   SCRIPT
+===================================================== -->
+<script>
+/* ================= THEME ================= */
+function setTheme(t){
+document.body.className="";
+if(t!="dark") document.body.classList.add(t);
+}
+
+/* ================= SEARCH ================= */
+function searchItem(val,id){
+val=val.toLowerCase();
+document.querySelectorAll(`#${id} .card`).forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(val)?"block":"none";
+});
+}
+
+/* ================= DATA : GUNS ================= */
+const guns=[
+{name:"M416 Glacier",img:"https://images.unsplash.com/photo-1599058917212-d750089bc07e"},
+{name:"AKM Dragon Flame",img:"https://images.unsplash.com/photo-1601924582975-7f8b6f79cbb1"},
+{name:"AWM Sniper",img:"https://images.unsplash.com/photo-1545161296-3cceabf6c6c5"},
+{name:"Groza Assault",img:"https://images.unsplash.com/photo-1606112219348-204d7d8b94ee"},
+{name:"UMP45 SMG",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30"},
+{name:"M762 Beryl",img:"https://images.unsplash.com/photo-1605806616949-1e87b487fc2f"},
+{name:"SCAR-L Jungle",img:"https://images.unsplash.com/photo-1589571894960-20bbe2828d0a"},
+{name:"Kar98K",img:"https://images.unsplash.com/photo-1519681393784-d120267933ba"}
+];
+
+/* ================= DATA : DRESS ================= */
+const dresses=[
+{name:"Blood Raven Set",img:"https://images.unsplash.com/photo-1542060748-10c28b62716c"},
+{name:"Golden Pharaoh Outfit",img:"https://images.unsplash.com/photo-1520975916090-3105956dac38"},
+{name:"Cyber Hunter Suit",img:"https://images.unsplash.com/photo-1611605698335-7a6fcd1c87b9"},
+{name:"Royal Pass King",img:"https://images.unsplash.com/photo-1607746882042-944635dfe10e"},
+{name:"Shadow Assassin",img:"https://images.unsplash.com/photo-1611605698323-2f6c8400e2f4"}
+];
+
+/* ================= DATA : XSUIT ================= */
+const xsuits=[
+{name:"Pharaoh X-Suit",img:"https://images.unsplash.com/photo-1607746882042-944635dfe10e"},
+{name:"Blood Raven X-Suit",img:"https://images.unsplash.com/photo-1607746882042-944635dfe10e"},
+{name:"Poseidon X-Suit",img:"https://images.unsplash.com/photo-1607746882042-944635dfe10e"},
+{name:"Avalanche X-Suit",img:"https://images.unsplash.com/photo-1607746882042-944635dfe10e"}
+];
+
+/* ================= RENDER ================= */
+function render(arr,id){
+let html="";
+arr.forEach(i=>{
+html+=`
+<div class="col-md-4 col-lg-3 mb-4">
+<div class="card">
+<img src="${i.img}">
+<div class="card-body">
+<h6>${i.name}</h6>
+</div>
+</div>
+</div>`;
+});
+document.getElementById(id).innerHTML=html;
+}
+
+render(guns,"gunList");
+render(dresses,"dressList");
+render(xsuits,"xsuitList");
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
